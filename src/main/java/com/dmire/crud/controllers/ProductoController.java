@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.dmire.crud.models.Paciente;
-import com.dmire.crud.repositories.IPaciente;
+import com.dmire.crud.models.Producto;
+import com.dmire.crud.repositories.IProducto;
 
 @RestController
 @CrossOrigin(origins = "*", methods = { 
@@ -22,28 +22,28 @@ import com.dmire.crud.repositories.IPaciente;
 		RequestMethod.POST, 
 		RequestMethod.PUT, 
 		RequestMethod.DELETE })
-@RequestMapping("/api/pacientes")
-public class PacienteController {
+@RequestMapping("/api/productos")
+public class ProductoController {
 	
 	@Autowired
-	private IPaciente repo;
+	private IProducto repo;
 	
-	@PostMapping("/paciente")
-	public Paciente create(@Validated @RequestBody Paciente p) {
+	@PostMapping("/producto")
+	public Producto create(@Validated @RequestBody Producto p) {
 		return repo.insert(p);
 	}
 	
 	@GetMapping("/")
-	public List<Paciente> readAll() {
+	public List<Producto> readAll() {
 		return repo.findAll();
 	}
 	
-	@PutMapping("/paciente/{id}")
-	public Paciente update(@PathVariable String id, @Validated @RequestBody Paciente p) {
+	@PutMapping("/producto/{id}")
+	public Producto update(@PathVariable String id, @Validated @RequestBody Producto p) {
 		return repo.save(p);
 	}
 	
-	@DeleteMapping("/paciente/{id}")
+	@DeleteMapping("/producto/{id}")
 	public void delete(@PathVariable String id) {
 		repo.deleteById(id);
 	}
